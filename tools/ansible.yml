@@ -27,11 +27,8 @@ steps:
     fi
   displayName: install ansible if needed
 - script: |
-    if [ ! -d "/home/majdoleen/ansibleWithdocker/" ]; then
-        cd ~ ; git clone https://github.com/majdoleen1/ansibleWithdocker
-    else
-    cd ~/ansible; git pull
-    fi
+    rm -rf ansibleWithdocker
+    git clone https://github.com/majdoleen1/ansibleWithdocker
   displayName: clone ansible or pull
   
 - ${{ each host in parameters.hosts }}:
