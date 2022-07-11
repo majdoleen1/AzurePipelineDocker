@@ -18,7 +18,7 @@ stages:
     workspace: 
       clean: all
     steps:
-    - powershell: |
+    - shell: |
         if ( docker images $(registry_url)/weight-tracker -q )
         {
           docker rmi $(docker images  $(registry_url)/weight-tracker -q)
