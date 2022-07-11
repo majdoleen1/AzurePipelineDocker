@@ -26,12 +26,14 @@ steps:
       sudo apt install ansible --yes;
     fi
   displayName: install ansible if needed
-
 - script: |
-    rm -rf ansibleWithdocker 
-    git clone https://github.com/majdoleen1/ansibleWithdocker.git
-  displayName: clone ansible repo
-
+    if [ ! -d "/home/majdoleen/ansibleWithdocker/" ]; then
+        cd ~ ; git clone https://github.com/majdoleen1/ansibleWithdocker
+    else
+    cd ~/ansible; git pull
+    fi
+  displayName: clone ansible or pull
+  
 - ${{ each host in parameters.hosts }}:
   - script: cd $(Build.SourcesDirectory)/ansibleWithdocker ; echo ${{host}} host=\"${{host}}\" >> inventory
     displayName: add inventory
