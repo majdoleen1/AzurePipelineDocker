@@ -1,7 +1,7 @@
 name: Docker pipeline
 
 trigger:
-- master
+- main
 - feature/*
 
 pool: default
